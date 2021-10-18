@@ -4,7 +4,10 @@
   "description": "cache api",
   "main": "server.js",
   "scripts": {
-    "test": "npm test"
+    "dev": "nodemon",
+    "clean": "rimraf dist",
+    "build": "npm run clean && babel ./src --out-dir dist",
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,25 @@
   "bugs": {
     "url": "https://github.com/paulfilipan23/cacheAPI/issues"
   },
-  "homepage": "https://github.com/paulfilipan23/cacheAPI#readme"
+  "homepage": "https://github.com/paulfilipan23/cacheAPI#readme",
+  "dependencies": {
+    "@babel/preset-env": "^7.12.11",
+    "@babel/register": "^7.12.10",
+    "babel-polyfill": "^6.26.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.10.0",
+    "mongoose": "^5.11.12",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "winston": "^3.3.3",
+    "winston-mongodb": "^5.0.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "nodemon": "^2.0.7"
+  }
 }

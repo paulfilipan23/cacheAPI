@@ -1,0 +1,30 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "esmodules": true
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "."
+        ],
+        "alias": {
+          "@controllers": "./src/controllers",
+          "@logging": "./src/logging",
+          "@services": "./src/services",
+          "@repository": "./src/repository",
+          "@middlewares": "./src/middlewares",
+          "@utils": "./src/utils"
+        }
+      }
+    ]
+  ]
+}
