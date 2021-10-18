@@ -1,0 +1,19 @@
+{
+  "name": "cacheapi",
+  "version": "1.0.0",
+  "description": "cache api",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulfilipan23/cacheAPI.git"
+  },
+  "author": "Paul Filipan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulfilipan23/cacheAPI/issues"
+  },
+  "homepage": "https://github.com/paulfilipan23/cacheAPI#readme"
+}
