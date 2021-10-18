@@ -17,4 +17,8 @@ const getAll = async () => {
   return cacheAll.map((cache) => cache.key);
 };
 
-export default { getOrCreate, getAll };
+const createOrUpdateCache = async (key, data) => {
+  return cacheRepo.createCache(key, data);
+};
+
+export default { getOrCreate, getAll, createOrUpdateCache };

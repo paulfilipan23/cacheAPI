@@ -11,4 +11,10 @@ const getAll = async (_, res) => {
   return res.status(200).json(result);
 };
 
-export default { getOrCreate, getAll };
+const createCache = async (req, res) => {
+  const { key, data } = req.body;
+  const result = await cacheService.createOrUpdateCache(key, data);
+  return res.status(200).json(result);
+};
+
+export default { getOrCreate, getAll, createCache };

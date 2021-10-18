@@ -12,7 +12,7 @@ const createCache = async (key, data) => {
   };
   // if the cache are having more than 5 entries, I replace the first one with the latest value added
   if (cacheTotal.length < 5) {
-    return Cache.create(objectToBeSaved);
+    return Cache.findOneAndUpdate({ key }, { key, data }, { upsert: true });
   }
   return Cache.findOneAndUpdate({}, objectToBeSaved, {
     sort: { createdAt: 1 },
@@ -21,6 +21,10 @@ const createCache = async (key, data) => {
 };
 
 const getAll = async () => Cache.find({}).select("key");
+
+// const createOrUpdate = async (key, data) => {
+//   return Cache.findOneAndUpdate({ key }, { key, data }, { upsert: true });
+// };
 
 export default {
   createCache,
