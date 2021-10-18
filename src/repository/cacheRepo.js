@@ -14,6 +14,11 @@ const createCache = async (key, data) => {
   if (cacheTotal.length < 5) {
     return Cache.findOneAndUpdate({ key }, { key, data }, { upsert: true });
   }
+  // if key already exists, just update the new data, for being reusable on post request,
+  // to not add a new entry if there are more then 5 entries
+  if (await Cache.findOne({ key })) {
+    return Cache.findOneAndUpdate({ key }, { key, data }, { new: true });
+  }
   return Cache.findOneAndUpdate({}, objectToBeSaved, {
     sort: { createdAt: 1 },
     new: true,
@@ -22,12 +27,11 @@ const createCache = async (key, data) => {
 
 const getAll = async () => Cache.find({}).select("key");
 
-// const createOrUpdate = async (key, data) => {
-//   return Cache.findOneAndUpdate({ key }, { key, data }, { upsert: true });
-// };
+const deleteOne = async (key) => Cache.deleteOne({ key });
 
 export default {
   createCache,
   getCache,
   getAll,
+  deleteOne,
 };

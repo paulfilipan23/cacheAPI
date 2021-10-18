@@ -4,6 +4,7 @@ const cacheSchema = new Schema({
   key: {
     type: String,
     required: true,
+    unique: true,
     min: 6,
   },
   data: {

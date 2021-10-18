@@ -20,5 +20,8 @@ const getAll = async () => {
 const createOrUpdateCache = async (key, data) => {
   return cacheRepo.createCache(key, data);
 };
+const deleteOneKey = async (key) => {
+  return cacheRepo.deleteOne(key);
+};
 
-export default { getOrCreate, getAll, createOrUpdateCache };
+export default { getOrCreate, getAll, createOrUpdateCache, deleteOneKey };

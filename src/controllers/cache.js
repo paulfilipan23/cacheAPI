@@ -17,4 +17,13 @@ const createCache = async (req, res) => {
   return res.status(200).json(result);
 };
 
-export default { getOrCreate, getAll, createCache };
+const deleteOneKey = async (req, res) => {
+  const { key } = req.params;
+  const { deletedCount } = await cacheService.deleteOneKey(key);
+  if (deletedCount) {
+    return res.status(200).json({ message: `${key} was deleted` });
+  }
+  return res.status(404).json({ message: `${key} was not found` });
+};
+
+export default { getOrCreate, getAll, createCache, deleteOneKey };
