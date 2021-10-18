@@ -29,9 +29,12 @@ const getAll = async () => Cache.find({}).select("key");
 
 const deleteOne = async (key) => Cache.deleteOne({ key });
 
+const deleteAll = async () => Cache.deleteMany({});
+
 export default {
   createCache,
   getCache,
   getAll,
   deleteOne,
+  deleteAll,
 };

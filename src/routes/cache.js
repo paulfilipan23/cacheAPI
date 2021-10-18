@@ -6,5 +6,6 @@ router.get("/cache", cacheController.getOrCreate);
 router.get("/cache-all", cacheController.getAll);
 router.post("/cache", cacheController.createCache);
 router.delete("/cache/:key", cacheController.deleteOneKey);
+router.delete("/cache-all", cacheController.deleteAll);
 
 export default router;
