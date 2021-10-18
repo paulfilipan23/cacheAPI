@@ -1,8 +1,8 @@
 import express, { json, urlencoded } from "express";
 import { config } from "dotenv";
 import { connect, connection as _connection } from "mongoose";
-import logger from "./utils/logger";
-// import routes from "./routes";
+import logger from "@utils/logger";
+import routes from "./routes";
 const path = require("path");
 
 config();
@@ -21,7 +21,7 @@ connection.once("open", function () {
 });
 //Middleware
 app.use(json());
-// app.use('/', routes);
+app.use("/", routes);
 
 //Router middlewares
 const port = process.env.PORT || 3000;
