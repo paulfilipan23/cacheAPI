@@ -10,7 +10,7 @@ const createCache = async (key, data) => {
     data,
     createdAt: Date.now(),
   };
-  // if the cache are having more than 5 entries, I replace that one with the latest value added
+  // if the cache are having more than 5 entries, I replace the first one with the latest value added
   if (cacheTotal.length < 5) {
     return Cache.create(objectToBeSaved);
   }
@@ -20,7 +20,10 @@ const createCache = async (key, data) => {
   });
 };
 
+const getAll = async () => Cache.find({}).select("key");
+
 export default {
   createCache,
   getCache,
+  getAll,
 };

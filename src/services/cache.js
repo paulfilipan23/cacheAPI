@@ -12,4 +12,9 @@ const getOrCreate = async (key) => {
   return cacheRepo.createCache(key, randomGenerate.createValue(10));
 };
 
-export default { getOrCreate };
+const getAll = async () => {
+  const cacheAll = await cacheRepo.getAll();
+  return cacheAll.map((cache) => cache.key);
+};
+
+export default { getOrCreate, getAll };
