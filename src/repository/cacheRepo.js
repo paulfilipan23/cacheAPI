@@ -1,6 +1,10 @@
 import Cache from "@models/Cache";
 const getCache = async (key) => {
-  return Cache.findOne({ key });
+  return Cache.findOneAndUpdate(
+    { key },
+    { createdAt: Date.now() },
+    { new: true }
+  );
 };
 
 const createCache = async (key, data) => {
@@ -10,14 +14,21 @@ const createCache = async (key, data) => {
     data,
     createdAt: Date.now(),
   };
-  // if the cache are having more than 5 entries, I replace the first one with the latest value added
   if (cacheTotal.length < 5) {
-    return Cache.findOneAndUpdate({ key }, { key, data }, { upsert: true });
+    return Cache.findOneAndUpdate({ key }, objectToBeSaved, {
+      upsert: true,
+      new: true,
+    });
   }
+  // if the cache is having more than 5 entries, I replace the first one with the latest value added
   // if key already exists, just update the new data, for being reusable on post request,
   // to not add a new entry if there are more then 5 entries
   if (await Cache.findOne({ key })) {
-    return Cache.findOneAndUpdate({ key }, { key, data }, { new: true });
+    return Cache.findOneAndUpdate(
+      { key },
+      { key, data, createdAt: Date.now() },
+      { new: true }
+    );
   }
   return Cache.findOneAndUpdate({}, objectToBeSaved, {
     sort: { createdAt: 1 },
@@ -25,7 +36,10 @@ const createCache = async (key, data) => {
   });
 };
 
-const getAll = async () => Cache.find({}).select("key");
+const getAll = async () => {
+  await Cache.updateMany({}, { createdAt: Date.now() });
+  return Cache.find({}).select("key");
+};
 
 const deleteOne = async (key) => Cache.deleteOne({ key });
 
