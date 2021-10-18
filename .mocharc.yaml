@@ -1,0 +1,25 @@
+allow-uncaught: false
+async-only: true
+color: true
+diff: true
+exit: true
+extension:
+  - "ts"
+file:
+  - "./src/controllers/__tests__/init-db-connection.js"
+forbid-only: false
+forbid-pending: false
+full-trace: false
+growl: false
+recursive: false
+reporter: "spec"
+retries: 0
+slow: 100
+sort: false
+spec: "./src/**/*.spec.js"
+timeout: 5000
+trace-warnings: true
+v8-stack-trace-limit: 100 # V8 flags are prepended with "v8-"
+watch: false
+require:
+  - "dotenv/config"

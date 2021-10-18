@@ -1,9 +1,8 @@
-import express, { json, urlencoded } from "express";
+import express, { json } from "express";
 import { config } from "dotenv";
 import { connect, connection as _connection } from "mongoose";
 import logger from "@utils/logger";
 import routes from "./routes";
-const path = require("path");
 
 config();
 //connect to DB
@@ -28,3 +27,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () =>
   logger.log("info", `Server Up and running on port ${port}`)
 );
+
+module.exports = app;
